@@ -71,21 +71,25 @@ export const App = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="field">
+          <label htmlFor="titleInput">Todo Title</label>
           <input
+            id="titleInput"
             type="text"
             data-cy="titleInput"
             placeholder="Enter todo title"
             value={title}
-            onChange={e => handleTitleChange(e.target.value)}
+            onChange={event => handleTitleChange(event.target.value)}
           />
           {titleError && <span className="error">Please enter a title</span>}
         </div>
 
         <div className="field">
+          <label htmlFor="userSelect">Select User</label>
           <select
+            id="userSelect"
             data-cy="userSelect"
             value={userId}
-            onChange={e => handleUserChange(Number(e.target.value))}
+            onChange={event => handleUserChange(Number(event.target.value))}
           >
             <option value={0}>Choose a user</option>
             {usersFromServer.map(user => (
@@ -94,7 +98,6 @@ export const App = () => {
               </option>
             ))}
           </select>
-
           {userError && <span className="error">Please choose a user</span>}
         </div>
 
