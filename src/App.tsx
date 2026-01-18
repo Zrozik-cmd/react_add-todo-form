@@ -33,17 +33,21 @@ export const App = () => {
       return;
     }
 
-    const user = usersFromServer.find(u => u.id === userId)!;
+    const user = usersFromServer.find(user => user.id === userId)!;
+
+    const nextId = todos.length
+      ? Math.max(...todos.map(todo => todo.id)) + 1
+      : 1;
 
     const newTodo: Todo = {
-      id: Math.max(...todos.map(t => t.id)) + 1,
+      id: nextId,
       title,
       userId,
       completed: false,
       user,
     };
 
-    setTodos([...todos, newTodo]);
+    setTodos(currentTodos => [...currentTodos, newTodo]);
     setTitle('');
     setUserId(0);
   };
